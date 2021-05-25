@@ -1,7 +1,7 @@
 {% for category in categories %}
 <a class="p-2 text-dark" href="{{
     path('videoList' , {
-        'categoryName': category.name|lower,
+        'categoryName': category.name|lower|slugify,
         'id': category.id
         })
     }}"
