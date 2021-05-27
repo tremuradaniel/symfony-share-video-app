@@ -110,4 +110,9 @@
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpStepFilterConfiguration">
+    <skipped_functions>
+      <skipped_function name="App\Utils\CategoryTreeFrontPage-&gt;getMainParent" />
+    </skipped_functions>
+  </component>
 </project>
