@@ -22,7 +22,7 @@
                     'categoryName' => $catName,
                     'id' => $value['id']
                 ]);
-                $this->categoryList .= $this->html2 . $this->html3 . $url . $this->html4 . $catName . $this->html5;
+                $this->categoryList .= $this->html2 . $this->html3 . $url . $this->html4 . $value['name'] . $this->html5;
                 if(!empty($value['children'])) $this->getCategoryList($value['children']);
                 $this->categoryList .= $this->html6;
             }
