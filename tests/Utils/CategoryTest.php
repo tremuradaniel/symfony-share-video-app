@@ -8,15 +8,26 @@ use App\Twig\AppExtension;
 class CategoryTest extends KernelTestCase
 {
     protected $mockedCategoryTreeFrontPage;
+    protected $mockedCategoryTreeAdminList;
+    protected $mockedCategoryTreeAdminOptionList;
     protected function setUp(): void
     {
         $kernel = self::bootKernel();
         $urlgenerator = $kernel->getContainer()->get('router');
-        $this->mockedCategoryTreeFrontPage = $this->getMockBuilder('\App\Utils\CategoryTreeFrontPage')
-            ->disableOriginalConstructor()
-            ->setMethods() // if no, all methods return null unless mocked
-            ->getMock();
-        $this->mockedCategoryTreeFrontPage->urlGenerator = $urlgenerator;
+        $tested_classes = [
+            'CategoryTreeAdminList',
+            'CategoryTreeAdminOptionList',
+            'CategoryTreeFrontPage'
+        ];
+        foreach ($tested_classes as $class)
+        {
+            $name = 'mocked' . $class;
+            $this->$name = $this->getMockBuilder('\App\Utils\\' . $class)
+                ->disableOriginalConstructor()
+                ->setMethods() // if no, all methods return null unless mocked
+                ->getMock();
+        }
+        $this->$name->urlGenerator = $urlgenerator;
     }
 
     /**
