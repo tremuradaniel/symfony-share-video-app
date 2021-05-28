@@ -23,6 +23,7 @@
         {
             $subcategory = [];
             foreach ($this->categoriesArrayFromDB as $category) {
+                echo 'here';
                 $hasChild = $category['parent_id'] == $parent_id;
                 if($hasChild)
                 {

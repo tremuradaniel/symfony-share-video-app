@@ -89,4 +89,32 @@ class CategoryTest extends KernelTestCase
 
         ];
     }
+
+    /**
+     * @dataProvider dataForCategoryTreeAdminOptionList
+     */
+    public function testCategoryTreeAdminOptionList($arrayToCompare, $arrayFromDb)
+    {
+        $this->mockedCategoryTreeAdminOptionList->categoriesArrayFromDB = $arrayFromDb;
+        $arrayFromDb = $this->mockedCategoryTreeAdminOptionList->buildTree();
+        $this->assertSame($arrayToCompare, $this->mockedCategoryTreeAdminOptionList->getCategoryList($arrayFromDb));
+    }
+
+    public function dataForCategoryTreeAdminOptionList()
+    {
+        yield [
+            [
+                ['name'=>'Electronics','id'=>1],
+                ['name'=>'--Computers','id'=>6],
+                ['name'=>'----Laptops','id'=>8],
+                ['name'=>'------HP','id'=>14]
+            ],
+            [
+                ['name'=>'Electronics','id'=>1, 'parent_id'=>null],
+                ['name'=>'Computers','id'=>6, 'parent_id'=>1],
+                ['name'=>'Laptops','id'=>8, 'parent_id'=>6],
+                ['name'=>'HP','id'=>14, 'parent_id'=>8]
+            ]
+        ];
+    }
 }
