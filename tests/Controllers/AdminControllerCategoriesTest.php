@@ -14,7 +14,7 @@ class AdminControllerCategoriesTest extends WebTestCase
         // disableReboot
         // prevents from shutting down the kernel between test request and thus losing transactions
         $this->client->disableReboot();
-        $this->entityManager = $this->client->getContainer('doctrine.orm.entity_manager');
+        $this->entityManager = $this->client->getContainer()->get('doctrine.orm.entity_manager');
         $this->entityManager->beginTransaction();
         $this->entityManager->getConnection()->setAutoCommit(false);
     }
