@@ -1,5 +1,5 @@
 rem run in cmd with: tests.bat
-
+rem run in cmd to rebuild database: tests.bat tests -db
 @echo off
 if [%2]==[-db] goto rebuildDB
 if not [%1]==[] ( goto doConcreteTest) else ( goto doTest)

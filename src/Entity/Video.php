@@ -34,7 +34,7 @@ class Video
     private $path;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $duration;
 
@@ -77,7 +77,8 @@ class Video
         return $this->duration;
     }
 
-    public function setDuration(int $duration): self
+    // duration can be int or null
+    public function setDuration(?int $duration): self
     {
         $this->duration = $duration;
 

@@ -55,7 +55,7 @@ class AdminControllerCategoriesTest extends WebTestCase
     public function testNumberOfItems()
     {
         $crawler = $this->client->request('GET', '/admin/categories');
-        $this->assertCount(18, $crawler->filter('option'));
+        $this->assertCount(21, $crawler->filter('option'));
     }
 
     public function testNewCategory()
