@@ -49,7 +49,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/edit-category{id}", name="edit_category", methods={"GET", "POST"})
+     * @Route("/edit-category/{id}", name="edit_category", methods={"GET", "POST"})
      */
     public function editCategory(Category $category, Request $request)
     {
