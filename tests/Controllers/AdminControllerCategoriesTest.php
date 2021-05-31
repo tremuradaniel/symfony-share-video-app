@@ -32,4 +32,10 @@ class AdminControllerCategoriesTest extends WebTestCase
         $this->assertSame('Categories list', $crawler->filter('h2')->text());
         $this->assertStringContainsString('Electronics', $this->client->getResponse()->getContent());
     }
+
+    public function testNumberOfItems()
+    {
+        $crawler = $this->client->request('GET', '/admin/categories');
+        $this->assertCount(18, $crawler->filter('option'));
+    }
 }
