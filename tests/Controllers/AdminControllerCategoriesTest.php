@@ -33,6 +33,18 @@ class AdminControllerCategoriesTest extends WebTestCase
         $this->assertStringContainsString('Electronics', $this->client->getResponse()->getContent());
     }
 
+    public function testEditCategory(): void
+    {
+        $crawler = $this->client->request('GET', '/admin/edit-category/1');
+        $form = $crawler->selectButton('Save')->form([
+            'category[parent]' => 0,
+            'category[name]' => 'Electronics 2'
+        ]);
+        $this->client->submit($form);
+        $category = $this->entityManager->getRepository(Category::class)->find(1);
+        $this->assertSame('Electronics 2', $category->getName());
+    }
+
     public function testNumberOfItems()
     {
         $crawler = $this->client->request('GET', '/admin/categories');
