@@ -11,6 +11,20 @@ class AdminControllerCategoriesTest extends WebTestCase
     {
         parent::setUp();
         $this->client = static::createClient();
+        // disableReboot
+        // prevents from shutting down the kernel between test request and thus losing transactions
+        $this->client->disableReboot();
+        $this->entityManager = $this->client->getContainer('doctrine.orm.entity_manager');
+        $this->entityManager->beginTransaction();
+        $this->entityManager->getConnection()->setAutoCommit(false);
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+        $this->entityManager->rollback();
+        $this->entityManager->close();
+        $this->entityManager = null; // avoid memory leaks
     }
     public function testTextOnPage(): void
     {
