@@ -55,4 +55,17 @@
             $categories_array = $this->buildTree($parentData['id']); // builds array for generating neste html list
             return $this->getCategoryList($categories_array);
         }
+
+        public function getChildIds(int $parent): array
+        {
+            static $ids = [];
+            foreach ($this->categoriesArrayFromDB as $value) {
+                if($value['parent_id'] == $parent)
+                {
+                    $ids[] = $value['id'] . ',';
+                    $this->getChildIds($value['id']);
+                }
+            }
+            return $ids;
+        }
     }
