@@ -53,12 +53,24 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/search_results", methods={"POST"}, name="searchResults")
+     * @Route("/search_results/{page}", methods={"GET"}, defaults={"page": "1"}, name="searchResults"),
+     * 
      */
-    public function searchResults()
+    public function searchResults($page, Request $request)
     {
+        $videos = null;
+        $query = null;
+        if($query = $request->get('query')) 
+        {
+            $videos = $this->getDoctrine()
+                ->getRepository(Video::class)
+                ->findByTitle($query, $page, $request->get('sortby'));
+            if(!$videos->getItems()) $videos = null;
+        }
         return $this->render('front/search_results.html.twig', [
             'controller_name' => 'FrontController',
+            'videos' => $videos,
+            'query' => $query
         ]);
     }
 
