@@ -11,6 +11,6 @@ php bin/console doctrine:fixtures:load -n -q
 
 ## Functional Testing
 
-__run all tests__ ``` php ./bin/phpunit ```
-__run certain tests__ ``` php ./bin/phpunit --filter 'Tests\\Front' ```
-__run certain test__ ``` php ./bin/phpunit --filter 'Tests\\FrontControllerVideoTest::testNoResults' ```
+__run all tests__ ``` php ./bin/phpunit ```  
+__run certain tests__ ``` php ./bin/phpunit --filter 'Tests\\Front' ```  
+__run certain test__ ``` php ./bin/phpunit --filter 'Tests\\FrontControllerVideoTest::testNoResults' ```  
