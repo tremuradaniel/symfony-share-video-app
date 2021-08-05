@@ -1,6 +1,13 @@
 # symfony-share-video-app
 
 
+# Scripts
+
+### Rebuild database
+```.\scripts\rebuild_database.bat```
+### Run tests
+```.\scripts\tests.bat```
+
 ## DB commands
 ### Quick tear down and put db up
 php bin/console doctrine:schema:drop -n -q --force --full-database  
